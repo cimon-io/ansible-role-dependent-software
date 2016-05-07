@@ -1,0 +1,9 @@
+- name: Install dependent software
+  apt:
+    pkg: '{{ item }}'
+    state: present
+    update_cache: true
+  with_items: '{{ application_dependent_packages }}'
+  tags:
+    - application
+    - apt
