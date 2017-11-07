@@ -1,9 +1,10 @@
-- name: Install dependent software
+---
+- name: "install system software"
   apt:
-    pkg: '{{ item }}'
+    pkg: "{{ item }}"
     state: present
     update_cache: true
-  with_items: '{{ application_dependent_packages }}'
+    cache_valid_time: "{{ apt_cache_valid_time }}"
+  with_items: "{{ software_packages_list }}"
   tags:
-    - application
-    - apt
+    - dependent-software
