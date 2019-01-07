@@ -5,5 +5,8 @@
     state: present
     update_cache: true
     cache_valid_time: "{{ apt_cache_valid_time }}"
+  retries: "{{ remote_package_retries }}"
+  register: apt_result
+  until: apt_result is succeeded
   tags:
     - dependent-software
